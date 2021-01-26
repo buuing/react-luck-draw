@@ -19,6 +19,23 @@ export default class LuckyGrid extends React.Component {
       props.onFinally && props.onFinally(err)
     }
   }
+  componentDidUpdate (prevProps) {
+    if (this.props.cols !== prevProps.cols) {
+      this.$lucky.cols = this.props.cols
+    }
+    if (this.props.rows !== prevProps.rows) {
+      this.$lucky.rows = this.props.rows
+    }
+    if (this.props.blocks !== prevProps.blocks) {
+      this.$lucky.blocks = this.props.blocks
+    }
+    if (this.props.prizes !== prevProps.prizes) {
+      this.$lucky.prizes = this.props.prizes
+    }
+    if (this.props.buttons !== prevProps.buttons) {
+      this.$lucky.buttons = this.props.buttons
+    }
+  }
   init () {
     const { props } = this
     this.$lucky = new Grid({

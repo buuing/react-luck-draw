@@ -1,5 +1,6 @@
 import React from 'react'
 import { LuckyWheel as Wheel } from 'lucky-canvas'
+import { name, version } from '../../package.json'
 
 export default class LuckyWheel extends React.Component {
   constructor (props) {
@@ -8,6 +9,7 @@ export default class LuckyWheel extends React.Component {
   }
   componentDidMount () {
     const { props } = this
+    this.myLucky.current.setAttribute('package', `${name}@${version}`)
     try {
       this.init()
       props.onSuccess && props.onSuccess()
@@ -17,8 +19,20 @@ export default class LuckyWheel extends React.Component {
       props.onFinally && props.onFinally(err)
     }
   }
+  componentDidUpdate (prevProps) {
+    if (this.props.blocks !== prevProps.blocks) {
+      this.$lucky.blocks = this.props.blocks
+    }
+    if (this.props.prizes !== prevProps.prizes) {
+      this.$lucky.prizes = this.props.prizes
+    }
+    if (this.props.buttons !== prevProps.buttons) {
+      this.$lucky.buttons = this.props.buttons
+    }
+  }
   init () {
     const { props } = this
+    console.log(props)
     this.$lucky = new Wheel({
       flag: 'WEB',
       width: props.width,

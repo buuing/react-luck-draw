@@ -1521,6 +1521,9 @@ exports.LuckyGrid = F, exports.LuckyWheel = $;
 
 var luckyCanvas = luckyCanvas_cjs_min;
 
+var name = "react-luck-draw";
+var version = "0.0.1";
+
 var LuckyWheel = /*#__PURE__*/function (_React$Component) {
   _inherits(LuckyWheel, _React$Component);
 
@@ -1540,6 +1543,7 @@ var LuckyWheel = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var props = this.props;
+      this.myLucky.current.setAttribute('package', "".concat(name, "@").concat(version));
 
       try {
         this.init();
@@ -1551,9 +1555,25 @@ var LuckyWheel = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.blocks !== prevProps.blocks) {
+        this.$lucky.blocks = this.props.blocks;
+      }
+
+      if (this.props.prizes !== prevProps.prizes) {
+        this.$lucky.prizes = this.props.prizes;
+      }
+
+      if (this.props.buttons !== prevProps.buttons) {
+        this.$lucky.buttons = this.props.buttons;
+      }
+    }
+  }, {
     key: "init",
     value: function init() {
       var props = this.props;
+      console.log(props);
       this.$lucky = new luckyCanvas.LuckyWheel({
         flag: 'WEB',
         width: props.width,
@@ -1603,4 +1623,114 @@ LuckyWheel.defaultProps = {
   defaultConfig: {}
 };
 
+var LuckyGrid = /*#__PURE__*/function (_React$Component) {
+  _inherits(LuckyGrid, _React$Component);
+
+  var _super = _createSuper(LuckyGrid);
+
+  function LuckyGrid(props) {
+    var _this;
+
+    _classCallCheck(this, LuckyGrid);
+
+    _this = _super.call(this, props);
+    _this.myLucky = /*#__PURE__*/React__default['default'].createRef();
+    return _this;
+  }
+
+  _createClass(LuckyGrid, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var props = this.props;
+      this.myLucky.current.setAttribute('package', "".concat(name, "@").concat(version));
+
+      try {
+        this.init();
+        props.onSuccess && props.onSuccess();
+      } catch (err) {
+        props.onError && props.onError(err);
+      } finally {
+        props.onFinally && props.onFinally(err);
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.cols !== prevProps.cols) {
+        this.$lucky.cols = this.props.cols;
+      }
+
+      if (this.props.rows !== prevProps.rows) {
+        this.$lucky.rows = this.props.rows;
+      }
+
+      if (this.props.blocks !== prevProps.blocks) {
+        this.$lucky.blocks = this.props.blocks;
+      }
+
+      if (this.props.prizes !== prevProps.prizes) {
+        this.$lucky.prizes = this.props.prizes;
+      }
+
+      if (this.props.buttons !== prevProps.buttons) {
+        this.$lucky.buttons = this.props.buttons;
+      }
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      var props = this.props;
+      this.$lucky = new luckyCanvas.LuckyGrid({
+        flag: 'WEB',
+        width: props.width,
+        height: props.height,
+        divElement: this.myLucky.current
+      }, _objectSpread2(_objectSpread2({}, props), {}, {
+        start: function start() {
+          props.onStart && props.onStart.apply(props, arguments);
+        },
+        end: function end() {
+          props.onEnd && props.onEnd.apply(props, arguments);
+        }
+      }));
+    }
+  }, {
+    key: "play",
+    value: function play() {
+      var _this$$lucky;
+
+      (_this$$lucky = this.$lucky).play.apply(_this$$lucky, arguments);
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      var _this$$lucky2;
+
+      (_this$$lucky2 = this.$lucky).stop.apply(_this$$lucky2, arguments);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React__default['default'].createElement("div", {
+        ref: this.myLucky
+      });
+    }
+  }]);
+
+  return LuckyGrid;
+}(React__default['default'].Component);
+LuckyGrid.defaultProps = {
+  width: '',
+  height: '',
+  cols: 3,
+  rows: 3,
+  blocks: [],
+  prizes: [],
+  buttons: [],
+  defaultStyle: {},
+  activeStyle: {},
+  defaultConfig: {}
+};
+
+exports.LuckyGrid = LuckyGrid;
 exports.LuckyWheel = LuckyWheel;
