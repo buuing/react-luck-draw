@@ -21,7 +21,7 @@
       <img src="https://img.shields.io/badge/Author-%20buuing%20-7289da.svg?&logo=github&style=flat-square" alt="author" />
     </a>
     <a href="https://github.com/LuckDraw/react-luck-draw/blob/master/LICENSE" target="_black">
-      <img src="https://img.shields.io/github/license/buuing/react-luck-draw?color=%232DCE89&logo=github&style=flat-square" alt="license" />
+      <img src="https://img.shields.io/github/license/LuckDraw/react-luck-draw?color=%232DCE89&logo=github&style=flat-square" alt="license" />
     </a>
   </p>
 </div>
