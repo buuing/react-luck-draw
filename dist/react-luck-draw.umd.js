@@ -215,7 +215,7 @@
     return new (i || (i = Promise))(function (r, o) {
       function s(t) {
         try {
-          h(n.next(t));
+          u(n.next(t));
         } catch (t) {
           o(t);
         }
@@ -223,20 +223,20 @@
 
       function a(t) {
         try {
-          h(n.throw(t));
+          u(n.throw(t));
         } catch (t) {
           o(t);
         }
       }
 
-      function h(t) {
+      function u(t) {
         var e;
         t.done ? r(t.value) : (e = t.value, e instanceof i ? e : new i(function (t) {
           t(e);
         })).then(s, a);
       }
 
-      h((n = n.apply(t, e || [])).next());
+      u((n = n.apply(t, e || [])).next());
     });
   }
 
@@ -372,7 +372,7 @@
       return "\n" !== t;
     }).join("");
   },
-      h = function (t) {
+      u = function (t) {
     if ("string" != typeof t) return !1;
     if ("transparent" === (t = t.toLocaleLowerCase().trim())) return !1;
 
@@ -384,7 +384,7 @@
     var i;
     return !0;
   },
-      u = ["#409EFF", "#67C23A", "#E6A23C", "#F56C6C", "#909399"];
+      h = ["#409EFF", "#67C23A", "#E6A23C", "#F56C6C", "#909399"];
 
   var c = function () {
     function t(t, e, i, n, r) {
@@ -517,7 +517,7 @@
       x = function () {
     function t(t) {
       var e = this;
-      this.htmlFontSize = 16, this.rAF = function () {}, this.setHTMLFontSize(), "string" == typeof t ? t = {
+      this.htmlFontSize = 16, this.rAF = function () {}, this.count = 0, this.setHTMLFontSize(), "string" == typeof t ? t = {
         el: t
       } : 1 === t.nodeType && (t = {
         el: "",
@@ -525,54 +525,54 @@
       }), t = t, this.config = t, this.setDpr(), this.initWindowFunction(), t.flag || (t.flag = "WEB"), Object.prototype.hasOwnProperty.call(t, "ob") || (t.ob = !0), t.el && (t.divElement = document.querySelector(t.el));
       var i = 0,
           n = 0;
-
-      if (t.divElement && (i = t.divElement.offsetWidth, n = t.divElement.offsetHeight, t.canvasElement = document.createElement("canvas"), t.divElement.appendChild(t.canvasElement)), t.width = this.getLength(t.width) || i, t.height = this.getLength(t.height) || n, t.divElement && (t.divElement.style.overflow = "hidden", t.divElement.style.width = t.width + "px", t.divElement.style.height = t.height + "px"), t.canvasElement) {
-        var r = 0;
-        t.ctx = t.canvasElement.getContext("2d"), t.canvasElement.setAttribute("package", "lucky-canvas@1.4.2"), t.canvasElement.addEventListener("click", function (t) {
-          e.handleClick(t), 0 == r++ && setTimeout(function () {
-            return r = 0;
-          }, 1e3), 7 === r && e.drawEasterEggs(t);
-        });
-      }
-
-      this.ctx = t.ctx, t.ctx && t.width && t.height || console.error("无法获取到 CanvasContext2D 或宽高");
+      t.divElement && (i = t.divElement.offsetWidth, n = t.divElement.offsetHeight, t.canvasElement = document.createElement("canvas"), t.divElement.appendChild(t.canvasElement)), t.width = this.getLength(t.width) || i, t.height = this.getLength(t.height) || n, t.divElement && (t.divElement.style.overflow = "hidden", t.divElement.style.width = t.width + "px", t.divElement.style.height = t.height + "px"), t.canvasElement && (t.ctx = t.canvasElement.getContext("2d"), t.canvasElement.setAttribute("package", "lucky-canvas@1.4.5"), t.canvasElement.addEventListener("click", function (t) {
+        e.handleClick(t), e.drawEasterEggs(t.offsetX, t.offsetY);
+      })), this.ctx = t.ctx, t.ctx && t.width && t.height || console.error("无法获取到 CanvasContext2D 或宽高");
     }
 
     return t.prototype.handleClick = function (t) {}, t.prototype.draw = function () {}, t.prototype.conversionAxis = function (t, e) {
       return [0, 0];
-    }, t.prototype.drawEasterEggs = function (t) {
-      var e = this.ctx,
-          i = this.rAF,
-          n = this.conversionAxis(t.offsetX, t.offsetY),
-          r = n[0],
-          o = n[1],
-          s = this,
-          a = function (t, e, i, n) {
-        for (var r = [], o = 0; o < n; o++) {
-          var s = 9 * Math.random() + 1,
-              a = new c(t, 0, 0, s, u[Math.random() * u.length >> 0]);
-          a.x = e + 1 * Math.random() - 1 * Math.random(), a.y = i + 1 * Math.random() - 1 * Math.random();
-          var h = e - a.x,
-              l = i - a.y,
-              f = Math.abs(h / l);
-          a.dx = 100 * (h < 0 ? 1 : -1) / Math.sqrt(f * f + 1) * Math.random() * f + e, a.dy = 100 * (l < 0 ? 1 : -1) / Math.sqrt(f * f + 1) * Math.random() + i, r.push(a);
-        }
+    }, t.prototype.drawEasterEggs = function (t, e, i) {
+      var n = this;
 
-        return r;
-      }(e, r, o, 50),
-          h = .1,
-          l = 0;
-
-      !function t() {
-        if (!(l++ > 60)) {
-          i(t), s.draw();
-
-          for (var e = 0, n = a; e < n.length; e++) {
-            var r = n[e];
-            r.draw("fill"), r.vx = (r.dx - r.x) * h, r.vy = (r.dy - r.y) * h, r.x += r.vx, r.y += r.vy, r.sx += -r.sx * h, r.sy += -r.sy * h;
+      if (void 0 === i && (i = function () {}), 0 == this.count++ && setTimeout(function () {
+        return n.count = 0;
+      }, 1e3), 7 === this.count) {
+        var r = this.ctx,
+            o = this.rAF,
+            s = this.conversionAxis(t, e),
+            a = s[0],
+            u = s[1],
+            l = this,
+            f = function (t, e, i, n) {
+          for (var r = [], o = 0; o < n; o++) {
+            var s = 9 * Math.random() + 1,
+                a = new c(t, 0, 0, s, h[Math.random() * h.length >> 0]);
+            a.x = e + 1 * Math.random() - 1 * Math.random(), a.y = i + 1 * Math.random() - 1 * Math.random();
+            var u = e - a.x,
+                l = i - a.y,
+                f = Math.abs(u / l);
+            a.dx = 100 * (u < 0 ? 1 : -1) / Math.sqrt(f * f + 1) * Math.random() * f + e, a.dy = 100 * (l < 0 ? 1 : -1) / Math.sqrt(f * f + 1) * Math.random() + i, r.push(a);
           }
-        }
-      }();
+
+          return r;
+        }(r, a, u, 50),
+            d = .1,
+            p = 0;
+
+        !function t() {
+          if (!(p++ > 60)) {
+            o(t), l.draw();
+
+            for (var e = 0, n = f; e < n.length; e++) {
+              var r = n[e];
+              r.draw("fill"), r.vx = (r.dx - r.x) * d, r.vy = (r.dy - r.y) * d, r.x += r.vx, r.y += r.vy, r.sx += -r.sx * d, r.sy += -r.sy * d;
+            }
+
+            i.call(l);
+          }
+        }();
+      }
     }, t.prototype.setDpr = function () {
       var t = this.config;
       t.dpr || (window ? window.dpr = t.dpr = window.devicePixelRatio || 1 : t.dpr || console.error(t, "未传入 dpr 可能会导致绘制异常"));
@@ -671,13 +671,13 @@
     }
 
     o || (n = (s = [r, n])[0], r = s[1]);
-    var h = z(n, i),
-        u = h[0],
-        c = h[1],
+    var u = z(n, i),
+        h = u[0],
+        c = u[1],
         l = z(r, i),
         f = l[0],
         d = l[1],
-        p = S(u, c),
+        p = S(h, c),
         g = p[0],
         m = p[1],
         v = S(f, d),
@@ -685,16 +685,16 @@
         b = v[1],
         w = (b - m) / (g - y),
         x = (y * m - g * b) / (y - g);
-    isNaN(w) && (Math.abs(u) === +i.toFixed(8) && (w = u), Math.abs(f) === +i.toFixed(8) && (w = f)), g === 1 / 0 || g === -1 / 0 ? x = y * w + b : y !== 1 / 0 && y !== -1 / 0 || (x = g * w + m), e.lineTo(u, c), ["WEB", "UNI-H5"].includes(t) ? e.arcTo(w, x, f, d, i) : e.quadraticCurveTo(w, x, f, d);
+    isNaN(w) && (Math.abs(h) === +i.toFixed(8) && (w = h), Math.abs(f) === +i.toFixed(8) && (w = f)), g === 1 / 0 || g === -1 / 0 ? x = y * w + b : y !== 1 / 0 && y !== -1 / 0 || (x = g * w + m), e.lineTo(h, c), ["WEB", "UNI-H5"].includes(t) ? e.arcTo(w, x, f, d, i) : e.quadraticCurveTo(w, x, f, d);
   },
       C = function (t, e, i, n, r, o, s, a) {
     i || (i = s);
-    var h = I(90 / Math.PI / n * s),
-        u = I(90 / Math.PI / i * s),
-        c = r + h,
-        l = o - h,
-        f = r + u,
-        d = o - u;
+    var u = I(90 / Math.PI / n * s),
+        h = I(90 / Math.PI / i * s),
+        c = r + u,
+        l = o - u,
+        f = r + h,
+        d = o - h;
     e.beginPath(), e.fillStyle = a, e.moveTo.apply(e, z(c, n)), k(t, e, n, c, l, !0), d > f ? k(t, e, i, f, d, !1) : e.lineTo.apply(e, z((r + o) / 2, s / 2 / Math.abs(Math.sin((r - o) / 2)))), e.closePath(), e.fill();
   },
       T = function (t, e, i, n, r, o, s) {
@@ -892,10 +892,10 @@
       return n(this, void 0, void 0, function () {
         var n,
             a,
-            h = this;
+            u = this;
         return r(this, function (r) {
           return (n = this[t][e]) && n.imgs && (a = n.imgs[o]) ? (this[i][e] || (this[i][e] = []), this.loadImg(a.src, a).then(function (t) {
-            h[i][e][o] = t, s.call(h);
+            u[i][e][o] = t, s.call(u);
           }).catch(function (i) {
             console.error(t + "[" + e + "].imgs[" + o + "] " + i);
           }), [2]) : [2];
@@ -923,20 +923,20 @@
           r = n.config,
           o = n.ctx,
           s = n._defaultConfig,
-          u = n._defaultStyle;
+          h = n._defaultStyle;
       null === (t = r.beforeDraw) || void 0 === t || t.call(this, o), o.clearRect(-this.Radius, -this.Radius, 2 * this.Radius, 2 * this.Radius), this.prizeRadius = this.blocks.reduce(function (t, e, n) {
-        return h(e.background) && (o.beginPath(), o.fillStyle = e.background, o.arc(0, 0, t, 0, 2 * Math.PI, !1), o.fill()), e.imgs && e.imgs.forEach(function (e, r) {
+        return u(e.background) && (o.beginPath(), o.fillStyle = e.background, o.arc(0, 0, t, 0, 2 * Math.PI, !1), o.fill()), e.imgs && e.imgs.forEach(function (e, r) {
           if (i.blockImgs[n]) {
             var s = i.blockImgs[n][r];
 
             if (s) {
               var a = i.computedWidthAndHeight(s, e, 2 * t, 2 * t),
-                  h = a[0],
-                  u = a[1],
-                  c = [i.getOffsetX(h), i.getHeight(e.top, 2 * t) - t],
+                  u = a[0],
+                  h = a[1],
+                  c = [i.getOffsetX(u), i.getHeight(e.top, 2 * t) - t],
                   l = c[0],
                   f = c[1];
-              o.save(), e.rotate && o.rotate(I(i.rotateDeg)), i.drawImage(s, l, f, h, u), o.restore();
+              o.save(), e.rotate && o.rotate(I(i.rotateDeg)), i.drawImage(s, l, f, u, h), o.restore();
             }
           }
         }), t - i.getLength(e.padding && e.padding.split(" ")[0]);
@@ -947,15 +947,15 @@
         return i.getOffsetX(o.measureText(t).width);
       },
           f = function (t, e, n) {
-        var r = t.lineHeight || u.lineHeight || t.fontSize || u.fontSize;
+        var r = t.lineHeight || h.lineHeight || t.fontSize || h.fontSize;
         return i.getHeight(t.top, e) + (n + 1) * i.getLength(r);
       };
 
       o.save(), this.prizes.forEach(function (t, e) {
         var n = c + e * i.prizeRadian,
             d = i.prizeRadius - i.maxBtnRadius,
-            p = t.background || u.background;
-        h(p) && function (t, e, i, n, r, o, s, a) {
+            p = t.background || h.background;
+        u(p) && function (t, e, i, n, r, o, s, a) {
           s ? C(t, e, i, n, r, o, s, a) : (e.beginPath(), e.fillStyle = a, e.moveTo(0, 0), e.arc(0, 0, n, r, o, !1), e.closePath(), e.fill());
         }(r.flag, o, i.maxBtnRadius, i.prizeRadius, n - i.prizeRadian / 2, n + i.prizeRadian / 2, i.getLength(s.gutter), p);
         var g = Math.cos(n) * i.prizeRadius,
@@ -968,29 +968,29 @@
               var o = i.computedWidthAndHeight(r, t, i.prizeRadian * i.prizeRadius, d),
                   s = o[0],
                   a = o[1],
-                  h = [i.getOffsetX(s), i.getHeight(t.top, d)],
-                  u = h[0],
-                  c = h[1];
-              i.drawImage(r, u, c, s, a);
+                  u = [i.getOffsetX(s), i.getHeight(t.top, d)],
+                  h = u[0],
+                  c = u[1];
+              i.drawImage(r, h, c, s, a);
             }
           }
         }), t.fonts && t.fonts.forEach(function (t) {
-          var e = t.fontColor || u.fontColor,
-              n = t.fontWeight || u.fontWeight,
-              r = i.getLength(t.fontSize || u.fontSize),
-              h = t.fontStyle || u.fontStyle;
-          o.fillStyle = e, o.font = n + " " + (r >> 0) + "px " + h;
+          var e = t.fontColor || h.fontColor,
+              n = t.fontWeight || h.fontWeight,
+              r = i.getLength(t.fontSize || h.fontSize),
+              u = t.fontStyle || h.fontStyle;
+          o.fillStyle = e, o.font = n + " " + (r >> 0) + "px " + u;
           var c = [],
               p = String(t.text);
 
-          if (Object.prototype.hasOwnProperty.call(t, "wordWrap") ? t.wordWrap : u.wordWrap) {
+          if (Object.prototype.hasOwnProperty.call(t, "wordWrap") ? t.wordWrap : h.wordWrap) {
             p = a(p);
 
             for (var g = "", m = 0; m < p.length; m++) {
               g += p[m];
               var v = o.measureText(g).width,
                   y = (i.prizeRadius - f(t, d, c.length)) * Math.tan(i.prizeRadian / 2) * 2 - i.getLength(s.gutter);
-              v > i.getWidth(t.lengthLimit || u.lengthLimit, y) && (c.push(g.slice(0, -1)), g = p[m]);
+              v > i.getWidth(t.lengthLimit || h.lengthLimit, y) && (c.push(g.slice(0, -1)), g = p[m]);
             }
 
             g && c.push(g), c.length || c.push(p);
@@ -1004,25 +1004,25 @@
         }), o.rotate(I(360) - n - I(90)), o.translate(-g, -m);
       }), o.restore(), this.buttons.forEach(function (t, e) {
         var n = i.getHeight(t.radius);
-        i.maxBtnRadius = Math.max(i.maxBtnRadius, n), h(t.background) && (o.beginPath(), o.fillStyle = t.background, o.arc(0, 0, n, 0, 2 * Math.PI, !1), o.fill()), t.pointer && h(t.background) && (o.beginPath(), o.fillStyle = t.background, o.moveTo(-n, 0), o.lineTo(n, 0), o.lineTo(0, 2 * -n), o.closePath(), o.fill()), t.imgs && t.imgs.forEach(function (t, r) {
+        i.maxBtnRadius = Math.max(i.maxBtnRadius, n), u(t.background) && (o.beginPath(), o.fillStyle = t.background, o.arc(0, 0, n, 0, 2 * Math.PI, !1), o.fill()), t.pointer && u(t.background) && (o.beginPath(), o.fillStyle = t.background, o.moveTo(-n, 0), o.lineTo(n, 0), o.lineTo(0, 2 * -n), o.closePath(), o.fill()), t.imgs && t.imgs.forEach(function (t, r) {
           if (i.btnImgs[e]) {
             var o = i.btnImgs[e][r];
 
             if (o) {
               var s = i.computedWidthAndHeight(o, t, 2 * n, 2 * n),
                   a = s[0],
-                  h = s[1],
-                  u = [i.getOffsetX(a), i.getHeight(t.top, n)],
-                  c = u[0],
-                  l = u[1];
-              i.drawImage(o, c, l, a, h);
+                  u = s[1],
+                  h = [i.getOffsetX(a), i.getHeight(t.top, n)],
+                  c = h[0],
+                  l = h[1];
+              i.drawImage(o, c, l, a, u);
             }
           }
         }), t.fonts && t.fonts.forEach(function (t) {
-          var e = t.fontColor || u.fontColor,
-              r = t.fontWeight || u.fontWeight,
-              s = i.getLength(t.fontSize || u.fontSize),
-              a = t.fontStyle || u.fontStyle;
+          var e = t.fontColor || h.fontColor,
+              r = t.fontWeight || h.fontWeight,
+              s = i.getLength(t.fontSize || h.fontSize),
+              a = t.fontStyle || h.fontStyle;
           o.fillStyle = e, o.font = r + " " + (s >> 0) + "px " + a, String(t.text).split("\n").forEach(function (e, i) {
             o.fillText(e, l(e), f(t, n, i));
           });
@@ -1045,8 +1045,8 @@
       if (a >= s.accelerationTime && void 0 !== n) {
         this.FPS = a / t, this.endTime = Date.now(), this.stopDeg = o;
 
-        for (var h = Math.random() * r * this.getLength(s.stopRange) - r / 2, u = 0; ++u;) {
-          var c = 360 * u - n * r - o - s.offsetDegree + h;
+        for (var u = (Math.random() * r - r / 2) * this.getLength(s.stopRange), h = 0; ++h;) {
+          var c = 360 * h - n * r - o - s.offsetDegree + u;
 
           if (P[s.speedFunction].easeOut(this.FPS, this.stopDeg, c, s.decelerationTime) - this.stopDeg > s.speed) {
             this.endDeg = c;
@@ -1066,12 +1066,12 @@
           o = e.prizeFlag,
           s = e.stopDeg,
           a = e.endDeg,
-          h = e._defaultConfig,
-          u = Date.now() - this.endTime;
-      if (u >= h.decelerationTime) return this.startTime = 0, void (null === (t = this.endCallback) || void 0 === t || t.call(this, i({}, r.find(function (t, e) {
+          u = e._defaultConfig,
+          h = Date.now() - this.endTime;
+      if (h >= u.decelerationTime) return this.startTime = 0, void (null === (t = this.endCallback) || void 0 === t || t.call(this, i({}, r.find(function (t, e) {
         return e === o;
       }))));
-      this.rotateDeg = P[h.speedFunction].easeOut(u, s, a, h.decelerationTime) % 360, this.draw(), n(this.slowDown.bind(this));
+      this.rotateDeg = P[u.speedFunction].easeOut(h, s, a, u.decelerationTime) % 360, this.draw(), n(this.slowDown.bind(this));
     }, o.prototype.getWidth = function (t, e) {
       return void 0 === e && (e = this.prizeRadian * this.prizeRadius), s(t, "number") ? t : s(t, "string") ? this.changeUnits(t, e) : 0;
     }, o.prototype.getHeight = function (t, e) {
@@ -1084,7 +1084,7 @@
     }, o;
   }(x),
       F = function (t) {
-    function u(e, i) {
+    function h(e, i) {
       void 0 === i && (i = {});
       var n = t.call(this, e) || this;
       n.rows = 3, n.cols = 3, n.blocks = [], n.prizes = [], n.buttons = [], n.defaultConfig = {}, n._defaultConfig = {
@@ -1126,9 +1126,9 @@
       }), n;
     }
 
-    return e(u, t), u.prototype.initData = function (t) {
+    return e(h, t), h.prototype.initData = function (t) {
       this.$set(this, "rows", Number(t.rows) || 3), this.$set(this, "cols", Number(t.cols) || 3), this.$set(this, "blocks", t.blocks || []), this.$set(this, "prizes", t.prizes || []), this.$set(this, "buttons", t.buttons || []), this.$set(this, "button", t.button), this.$set(this, "defaultConfig", t.defaultConfig || {}), this.$set(this, "defaultStyle", t.defaultStyle || {}), this.$set(this, "activeStyle", t.activeStyle || {}), this.$set(this, "startCallback", t.start), this.$set(this, "endCallback", t.end);
-    }, u.prototype.initComputed = function () {
+    }, h.prototype.initComputed = function () {
       var t = this;
       this.$computed(this, "_defaultConfig", function () {
         var e = i({
@@ -1156,7 +1156,7 @@
           shadow: ""
         }, t.activeStyle);
       });
-    }, u.prototype.initWatch = function () {
+    }, h.prototype.initWatch = function () {
       var t = this;
       this.$watch("blocks", function (e) {
         return t.init({
@@ -1213,7 +1213,7 @@
       }), this.$watch("endCallback", function () {
         return t.init({});
       });
-    }, u.prototype.init = function (t) {
+    }, h.prototype.init = function (t) {
       var e,
           i,
           n = this,
@@ -1235,7 +1235,7 @@
           });
         });
       }), null === (i = o.afterInit) || void 0 === i || i.call(this);
-    }, u.prototype.handleClick = function (t) {
+    }, h.prototype.handleClick = function (t) {
       var e = this,
           i = this.ctx;
       o(this.buttons, [this.button]).forEach(function (n) {
@@ -1245,31 +1245,31 @@
           var o = e.getGeometricProperty([n.x, n.y, n.col || 1, n.row || 1]),
               s = o[0],
               a = o[1],
-              h = o[2],
-              u = o[3];
-          i.beginPath(), i.rect(s, a, h, u), i.isPointInPath(t.offsetX, t.offsetY) && (e.startTime || null === (r = e.startCallback) || void 0 === r || r.call(e, t));
+              u = o[2],
+              h = o[3];
+          i.beginPath(), i.rect(s, a, u, h), i.isPointInPath(t.offsetX, t.offsetY) && (e.startTime || null === (r = e.startCallback) || void 0 === r || r.call(e, t));
         }
       });
-    }, u.prototype.loadAndCacheImg = function (t, e, i, o, s) {
+    }, h.prototype.loadAndCacheImg = function (t, e, i, o, s) {
       return n(this, void 0, void 0, function () {
         var n,
             a,
-            h,
-            u = this;
+            u,
+            h = this;
         return r(this, function (r) {
-          return n = this[t][e], "buttons" === t && !this.buttons.length && this.button && (n = this.button), n && n.imgs && (a = n.imgs[o]) ? (this[i][e] || (this[i][e] = []), h = [this.loadImg(a.src, a), a.activeSrc && this.loadImg(a.activeSrc, a, "$activeResolve")], Promise.all(h).then(function (t) {
+          return n = this[t][e], "buttons" === t && !this.buttons.length && this.button && (n = this.button), n && n.imgs && (a = n.imgs[o]) ? (this[i][e] || (this[i][e] = []), u = [this.loadImg(a.src, a), a.activeSrc && this.loadImg(a.activeSrc, a, "$activeResolve")], Promise.all(u).then(function (t) {
             var n = t[0],
                 r = t[1];
-            u[i][e][o] = {
+            h[i][e][o] = {
               defaultImg: n,
               activeImg: r
-            }, s.call(u);
+            }, s.call(h);
           }).catch(function (i) {
             console.error(t + "[" + e + "].imgs[" + o + "] " + i);
           }), [2]) : [2];
         });
       });
-    }, u.prototype.computedWidthAndHeight = function (t, e, i) {
+    }, h.prototype.computedWidthAndHeight = function (t, e, i) {
       if (!e.width && !e.height) return [t.width, t.height];
 
       if (e.width && !e.height) {
@@ -1283,17 +1283,17 @@
       }
 
       return [this.getWidth(e.width, i.col), this.getHeight(e.height, i.row)];
-    }, u.prototype.draw = function () {
+    }, h.prototype.draw = function () {
       var t,
           e,
           i = this,
           n = this,
           r = n.config,
-          u = n.ctx,
+          h = n.ctx,
           c = n._defaultConfig,
           l = n._defaultStyle,
           f = n._activeStyle;
-      null === (t = r.beforeDraw) || void 0 === t || t.call(this, u), u.clearRect(0, 0, r.width, r.height), this.cells = o(this.prizes, this.buttons), this.button && this.cells.push(this.button), this.cells.forEach(function (t) {
+      null === (t = r.beforeDraw) || void 0 === t || t.call(this, h), h.clearRect(0, 0, r.width, r.height), this.cells = o(this.prizes, this.buttons), this.button && this.cells.push(this.button), this.cells.forEach(function (t) {
         t.col = t.col || 1, t.row = t.row || 1;
       }), this.prizeArea = this.blocks.reduce(function (t, e) {
         var n = t.x,
@@ -1333,7 +1333,7 @@
             paddingRight: o
           };
 
-          for (var h in a) a[h] = Object.prototype.hasOwnProperty.call(t, h) && s(t[h], "string", "number") ? ~~String(t[h]).replace(/px/g, "") : a[h];
+          for (var u in a) a[u] = Object.prototype.hasOwnProperty.call(t, u) && s(t[u], "string", "number") ? ~~String(t[u]).replace(/px/g, "") : a[u];
 
           return [i, n, r, o];
         }(e).map(function (t) {
@@ -1346,7 +1346,7 @@
             m = e.borderRadius ? i.getLength(e.borderRadius) : 0,
             v = e.background || l.background;
 
-        return h(v) && T(u, n, r, o, a, m, i.handleBackground(n, r, o, a, v)), {
+        return u(v) && T(h, n, r, o, a, m, i.handleBackground(n, r, o, a, v)), {
           x: n + p,
           y: r + f,
           w: o - p - g,
@@ -1366,11 +1366,11 @@
             p = e === i.currIndex % i.prizes.length >> 0,
             g = p ? f.background : t.background || l.background;
 
-        if (h(g)) {
+        if (u(g)) {
           var m = (p ? f.shadow : t.shadow || l.shadow).replace(/px/g, "").split(",")[0].split(" ").map(function (t, e) {
             return e < 3 ? Number(t) : t;
           });
-          4 === m.length && (u.shadowColor = m[3], u.shadowOffsetX = m[0] * r.dpr, u.shadowOffsetY = m[1] * r.dpr, u.shadowBlur = m[2], m[0] > 0 ? c -= m[0] : (c += m[0], o -= m[0]), m[1] > 0 ? d -= m[1] : (d += m[1], s -= m[1])), T(u, o, s, c, d, i.getLength(t.borderRadius ? t.borderRadius : l.borderRadius), i.handleBackground(o, s, c, d, g)), u.shadowColor = "rgba(0, 0, 0, 0)", u.shadowOffsetX = 0, u.shadowOffsetY = 0, u.shadowBlur = 0;
+          4 === m.length && (h.shadowColor = m[3], h.shadowOffsetX = m[0] * r.dpr, h.shadowOffsetY = m[1] * r.dpr, h.shadowBlur = m[2], m[0] > 0 ? c -= m[0] : (c += m[0], o -= m[0]), m[1] > 0 ? d -= m[1] : (d += m[1], s -= m[1])), T(h, o, s, c, d, i.getLength(t.borderRadius ? t.borderRadius : l.borderRadius), i.handleBackground(o, s, c, d, g)), h.shadowColor = "rgba(0, 0, 0, 0)", h.shadowOffsetX = 0, h.shadowOffsetY = 0, h.shadowBlur = 0;
         }
 
         var v = "prizeImgs";
@@ -1379,25 +1379,25 @@
             var a = i[v][e][r];
 
             if (a) {
-              var h = p && a.activeImg || a.defaultImg;
+              var u = p && a.activeImg || a.defaultImg;
 
-              if (h) {
-                var u = i.computedWidthAndHeight(h, n, t),
-                    c = u[0],
-                    l = u[1],
+              if (u) {
+                var h = i.computedWidthAndHeight(u, n, t),
+                    c = h[0],
+                    l = h[1],
                     f = [o + i.getOffsetX(c, t.col), s + i.getHeight(n.top, t.row)],
                     d = f[0],
                     g = f[1];
-                i.drawImage(h, d, g, c, l);
+                i.drawImage(u, d, g, c, l);
               }
             }
           }
         }), t.fonts && t.fonts.forEach(function (e) {
           var n = p && f.fontStyle ? f.fontStyle : e.fontStyle || l.fontStyle,
               r = p && f.fontWeight ? f.fontWeight : e.fontWeight || l.fontWeight,
-              h = p && f.fontSize ? i.getLength(f.fontSize) : i.getLength(e.fontSize || l.fontSize),
+              u = p && f.fontSize ? i.getLength(f.fontSize) : i.getLength(e.fontSize || l.fontSize),
               c = p && f.lineHeight ? f.lineHeight : e.lineHeight || l.lineHeight || e.fontSize || l.fontSize;
-          u.font = r + " " + (h >> 0) + "px " + n, u.fillStyle = p && f.fontColor ? f.fontColor : e.fontColor || l.fontColor;
+          h.font = r + " " + (u >> 0) + "px " + n, h.fillStyle = p && f.fontColor ? f.fontColor : e.fontColor || l.fontColor;
           var d = [],
               g = String(e.text);
 
@@ -1405,35 +1405,35 @@
             g = a(g);
 
             for (var m = "", v = 0; v < g.length; v++) {
-              m += g[v], u.measureText(m).width > i.getWidth(e.lengthLimit || l.lengthLimit, t.col) && (d.push(m.slice(0, -1)), m = g[v]);
+              m += g[v], h.measureText(m).width > i.getWidth(e.lengthLimit || l.lengthLimit, t.col) && (d.push(m.slice(0, -1)), m = g[v]);
             }
 
             m && d.push(m), d.length || d.push(g);
           } else d = g.split("\n");
 
           d.forEach(function (n, r) {
-            u.fillText(n, o + i.getOffsetX(u.measureText(n).width, t.col), s + i.getHeight(e.top, t.row) + (r + 1) * i.getLength(c));
+            h.fillText(n, o + i.getOffsetX(h.measureText(n).width, t.col), s + i.getHeight(e.top, t.row) + (r + 1) * i.getLength(c));
           });
         });
-      }), null === (e = r.afterDraw) || void 0 === e || e.call(this, u);
-    }, u.prototype.handleBackground = function (t, e, i, n, r) {
+      }), null === (e = r.afterDraw) || void 0 === e || e.call(this, h);
+    }, h.prototype.handleBackground = function (t, e, i, n, r) {
       var o = this.ctx;
       return r.includes("linear-gradient") && (r = function (t, e, i, n, r, o) {
         var s = /linear-gradient\((.+)\)/.exec(o)[1].split(",").map(function (t) {
           return t.trim();
         }),
             a = s.shift(),
-            h = [0, 0, 0, 0];
+            u = [0, 0, 0, 0];
 
         if (a.includes("deg")) {
-          var u = function (t) {
+          var h = function (t) {
             return Math.tan(t / 180 * Math.PI);
           };
 
-          (a = a.slice(0, -3) % 360) >= 0 && a < 45 ? h = [e, i + r, e + n, i + r - n * u(a - 0)] : a >= 45 && a < 90 ? h = [e, i + r, e + n - r * u(a - 45), i] : a >= 90 && a < 135 ? h = [e + n, i + r, e + n - r * u(a - 90), i] : a >= 135 && a < 180 ? h = [e + n, i + r, e, i + n * u(a - 135)] : a >= 180 && a < 225 ? h = [e + n, i, e, i + n * u(a - 180)] : a >= 225 && a < 270 ? h = [e + n, i, e + r * u(a - 225), i + r] : a >= 270 && a < 315 ? h = [e, i, e + r * u(a - 270), i + r] : a >= 315 && a < 360 && (h = [e, i, e + n, i + r - n * u(a - 315)]);
-        } else a.includes("top") ? h = [e, i + r, e, i] : a.includes("bottom") ? h = [e, i, e, i + r] : a.includes("left") ? h = [e + n, i, e, i] : a.includes("right") && (h = [e, i, e + n, i]);
+          (a = a.slice(0, -3) % 360) >= 0 && a < 45 ? u = [e, i + r, e + n, i + r - n * h(a - 0)] : a >= 45 && a < 90 ? u = [e, i + r, e + n - r * h(a - 45), i] : a >= 90 && a < 135 ? u = [e + n, i + r, e + n - r * h(a - 90), i] : a >= 135 && a < 180 ? u = [e + n, i + r, e, i + n * h(a - 135)] : a >= 180 && a < 225 ? u = [e + n, i, e, i + n * h(a - 180)] : a >= 225 && a < 270 ? u = [e + n, i, e + r * h(a - 225), i + r] : a >= 270 && a < 315 ? u = [e, i, e + r * h(a - 270), i + r] : a >= 315 && a < 360 && (u = [e, i, e + n, i + r - n * h(a - 315)]);
+        } else a.includes("top") ? u = [e, i + r, e, i] : a.includes("bottom") ? u = [e, i, e, i + r] : a.includes("left") ? u = [e + n, i, e, i] : a.includes("right") && (u = [e, i, e + n, i]);
 
-        var c = t.createLinearGradient.apply(t, h.map(function (t) {
+        var c = t.createLinearGradient.apply(t, u.map(function (t) {
           return t >> 0;
         }));
         return s.reduce(function (t, e, i) {
@@ -1441,12 +1441,12 @@
           return 1 === n.length ? t.addColorStop(i, n[0]) : 2 === n.length && t.addColorStop.apply(t, n), t;
         }, c);
       }(o, t, e, i, n, r)), r;
-    }, u.prototype.play = function () {
+    }, h.prototype.play = function () {
       var t = this.config.clearInterval;
       this.startTime || (t(this.timer), this.startTime = Date.now(), this.prizeFlag = void 0, this.run());
-    }, u.prototype.stop = function (t) {
+    }, h.prototype.stop = function (t) {
       this.prizeFlag = t % this.prizes.length;
-    }, u.prototype.run = function (t) {
+    }, h.prototype.run = function (t) {
       void 0 === t && (t = 0);
       var e = this,
           i = e.rAF,
@@ -1455,13 +1455,13 @@
           o = e.prizeFlag,
           s = e.startTime,
           a = e._defaultConfig,
-          h = Date.now() - s;
+          u = Date.now() - s;
 
-      if (h >= a.accelerationTime && void 0 !== o) {
-        this.FPS = h / t, this.endTime = Date.now(), this.stopIndex = n;
+      if (u >= a.accelerationTime && void 0 !== o) {
+        this.FPS = u / t, this.endTime = Date.now(), this.stopIndex = n;
 
-        for (var u = 0; ++u;) {
-          var c = r.length * u + o - (n >> 0);
+        for (var h = 0; ++h;) {
+          var c = r.length * h + o - (n >> 0);
 
           if (O.easeOut(this.FPS, this.stopIndex, c, a.decelerationTime) - this.stopIndex > a.speed) {
             this.endIndex = c;
@@ -1472,8 +1472,8 @@
         return this.slowDown();
       }
 
-      this.currIndex = (n + O.easeIn(h, .1, a.speed, a.accelerationTime)) % r.length, this.draw(), i(this.run.bind(this, t + 1));
-    }, u.prototype.slowDown = function () {
+      this.currIndex = (n + O.easeIn(u, .1, a.speed, a.accelerationTime)) % r.length, this.draw(), i(this.run.bind(this, t + 1));
+    }, h.prototype.slowDown = function () {
       var t,
           e = this,
           n = e.rAF,
@@ -1481,20 +1481,20 @@
           o = e.prizeFlag,
           s = e.stopIndex,
           a = e.endIndex,
-          h = e._defaultConfig,
-          u = Date.now() - this.endTime;
-      if (u > h.decelerationTime) return this.startTime = 0, void (null === (t = this.endCallback) || void 0 === t || t.call(this, i({}, r.find(function (t, e) {
+          u = e._defaultConfig,
+          h = Date.now() - this.endTime;
+      if (h > u.decelerationTime) return this.startTime = 0, void (null === (t = this.endCallback) || void 0 === t || t.call(this, i({}, r.find(function (t, e) {
         return e === o;
       }))));
-      this.currIndex = O.easeOut(u, s, a, h.decelerationTime) % r.length, this.draw(), n(this.slowDown.bind(this));
-    }, u.prototype.walk = function () {
+      this.currIndex = O.easeOut(h, s, a, u.decelerationTime) % r.length, this.draw(), n(this.slowDown.bind(this));
+    }, h.prototype.walk = function () {
       var t = this,
           e = this.config,
           i = e.setInterval;
       (0, e.clearInterval)(this.timer), this.timer = i(function () {
         t.currIndex += 1, t.draw();
       }, 1300);
-    }, u.prototype.getGeometricProperty = function (t) {
+    }, h.prototype.getGeometricProperty = function (t) {
       var e = t[0],
           i = t[1],
           n = t[2],
@@ -1502,18 +1502,18 @@
           o = this.cellWidth,
           s = this.cellHeight,
           a = this._defaultConfig.gutter,
-          h = [this.prizeArea.x + (o + a) * e, this.prizeArea.y + (s + a) * i];
-      return n && r && h.push(o * n + a * (n - 1), s * r + a * (r - 1)), h;
-    }, u.prototype.getWidth = function (t, e) {
+          u = [this.prizeArea.x + (o + a) * e, this.prizeArea.y + (s + a) * i];
+      return n && r && u.push(o * n + a * (n - 1), s * r + a * (r - 1)), u;
+    }, h.prototype.getWidth = function (t, e) {
       return void 0 === e && (e = 1), s(t, "number") ? t : s(t, "string") ? this.changeUnits(t, this.cellWidth * e + this._defaultConfig.gutter * (e - 1)) : 0;
-    }, u.prototype.getHeight = function (t, e) {
+    }, h.prototype.getHeight = function (t, e) {
       return void 0 === e && (e = 1), s(t, "number") ? t : s(t, "string") ? this.changeUnits(t, this.cellHeight * e + this._defaultConfig.gutter * (e - 1)) : 0;
-    }, u.prototype.getOffsetX = function (t, e) {
+    }, h.prototype.getOffsetX = function (t, e) {
       return void 0 === e && (e = 1), (this.cellWidth * e + this._defaultConfig.gutter * (e - 1) - t) / 2;
-    }, u.prototype.conversionAxis = function (t, e) {
+    }, h.prototype.conversionAxis = function (t, e) {
       var i = this.config;
       return [t / i.dpr, e / i.dpr];
-    }, u;
+    }, h;
   }(x);
 
   exports.LuckyGrid = F, exports.LuckyWheel = $;
@@ -1522,7 +1522,7 @@
   var luckyCanvas = luckyCanvas_cjs_min;
 
   var name = "react-luck-draw";
-  var version = "0.0.1";
+  var version = "0.0.3";
 
   var LuckyWheel = /*#__PURE__*/function (_React$Component) {
     _inherits(LuckyWheel, _React$Component);
