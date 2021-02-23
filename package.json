@@ -1,6 +1,6 @@
 {
   "name": "react-luck-draw",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "react抽奖插件",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,6 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {
-    "lucky-canvas": "^1.4.5"
+    "lucky-canvas": "^1.5.2"
   }
 }
