@@ -1478,7 +1478,7 @@
   var luckyCanvas = luckyCanvas_cjs_min;
 
   var name = "react-luck-draw";
-  var version = "1.0.0";
+  var version = "1.0.1";
 
   var LuckyWheel = /*#__PURE__*/function (_React$Component) {
     _inherits(LuckyWheel, _React$Component);

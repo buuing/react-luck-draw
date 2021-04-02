@@ -4,10 +4,10 @@
   <p>一个基于 react 的 ( 大转盘 / 九宫格 ) 抽奖插件</p>
   <p>
     <a href="https://github.com/LuckDraw/react-luck-draw/stargazers" target="_black">
-      <img src="https://img.shields.io/github/stars/buuing/react-luck-draw?color=%23ffca28&logo=github&style=flat-square" alt="stars" />
+      <img src="https://img.shields.io/github/stars/LuckDraw/react-luck-draw?color=%23ffca28&logo=github&style=flat-square" alt="stars" />
     </a>
     <a href="https://github.com/LuckDraw/react-luck-draw/network/members" target="_black">
-      <img src="https://img.shields.io/github/forks/buuing/react-luck-draw?color=%23ffca28&logo=github&style=flat-square" alt="forks" />
+      <img src="https://img.shields.io/github/forks/LuckDraw/react-luck-draw?color=%23ffca28&logo=github&style=flat-square" alt="forks" />
     </a>
     <a href="https://www.npmjs.com/package/react-luck-draw" target="_black">
       <img src="https://img.shields.io/npm/v/react-luck-draw?color=%23ffca28&logo=npm&style=flat-square" alt="version" />
@@ -30,7 +30,7 @@
 
 ## 官方文档 & Demo演示
 
-> **中文**：[https://100px.net/document/react.html](https://100px.net/document/react.html)  
+> **中文**：[https://100px.net/usage/react.html](https://100px.net/usage/react.html)  
 
 > **English**：**If anyone can help translate the document, please contact me** `ldq404@qq.com`
 
@@ -152,6 +152,6 @@ export default class App extends React.Component {
 
 <br />
 
-## 推荐的开源项目
+## 友情链接
 
 - [🎁 h5-Dooring 一款功能强大，高可扩展的H5可视化编辑器](https://github.com/MrXujiang/h5-Dooring)

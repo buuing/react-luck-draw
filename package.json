@@ -1,6 +1,6 @@
 {
   "name": "react-luck-draw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react抽奖插件",
   "main": "index.js",
   "scripts": {
